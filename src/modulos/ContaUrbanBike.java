@@ -1,6 +1,8 @@
 package modulos;
 
-public abstract class ContaUrbanBike {
+import gerenciadores.Imprimivel;
+
+public abstract class ContaUrbanBike implements Imprimivel {
     private double saldo;
     private Integer numeroDaConta;
 
@@ -13,7 +15,26 @@ public abstract class ContaUrbanBike {
     protected ContaUrbanBike(){
 
     }
+    public boolean transferir( ContaUrbanBike urbanBike,Double valor ){
 
+        if(this.saldo < valor){
+            return false;
+        }
+
+        this.pedalar(valor);
+        urbanBike.creditar(valor);
+
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UrbanBike{" +
+                "accountNumber='" + numeroDaConta + '\'' +
+                ", saldo=" + saldo +
+                '}';
+    }
     public void pedalar (double valor){
         this.saldo -= valor;
     }

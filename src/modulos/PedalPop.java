@@ -1,6 +1,8 @@
 package modulos;
 
-public class PedalPop  extends ContaUrbanBike{
+import gerenciadores.Imprimivel;
+
+public class PedalPop  extends ContaUrbanBike implements Imprimivel {
     private double taxaDeOperacao;
 
     public PedalPop (double taxaDeOperacao){
@@ -21,6 +23,19 @@ public class PedalPop  extends ContaUrbanBike{
 
         this.creditar(taxaDeOperacao);
     }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        PedalPop pedalPop = (PedalPop) o;
+        return Double.compare(pedalPop.taxaDeOperacao, taxaDeOperacao) == 0;
+    }
+
+
     public double getTaxaDeOperacao() {
         return taxaDeOperacao;
     }
